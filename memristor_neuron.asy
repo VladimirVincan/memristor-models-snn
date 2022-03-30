@@ -51,8 +51,8 @@ WINDOW 0 36 40 Left 2
 WINDOW 3 36 76 Left 2
 SYMATTR Prefix X
 SYMATTR Description Parameterized Memristor
-SYMATTR ModelFile memristor_vol1.sub
-SYMATTR SpiceModel memristor_vol1
+SYMATTR ModelFile memristor_neuron.sub
+SYMATTR SpiceModel memristor_neuron
 PIN 16 16 NONE 8
 PINATTR PinName plus
 PINATTR SpiceOrder 1
@@ -65,6 +65,6 @@ PINATTR SpiceOrder 3
 PIN 64 0 RIGHT 8
 PINATTR PinName y
 PINATTR SpiceOrder 4
-PIN 64 16 LEFT 8
+PIN 64 16 RIGHT 8
 PINATTR PinName z
 PINATTR SpiceOrder 5

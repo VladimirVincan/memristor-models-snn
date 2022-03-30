@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
-l = ltspice.Ltspice(os.path.dirname(__file__)+'\\memristor_volRCn.raw') 
+l = ltspice.Ltspice(os.path.dirname(__file__)+'\\stdp.raw') 
 l.parse() 
 
 diff = []
@@ -12,7 +12,7 @@ time_val = 0.1
 print(l.case_count)
 for i in range(l.case_count): # Iteration in simulation cases
     V_y = l.get_data('V(y)', i)
-    diff.append(V_y[0] - V_y[-1])
+    diff.append(-V_y[0] + V_y[-1])
     time.append(time_val)
     time_val += 0.1
     print (i)

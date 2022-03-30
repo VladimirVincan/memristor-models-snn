@@ -7,14 +7,14 @@
 
 .param Ron=1 Roff=100k uv=100e-12 D=10n qp=100e-9 qn=-80e-9  Rint=50k
 + k={uv*Ron/D**2} deltaR={Roff-Ron} p=10
-.param x0=0.5 y0=0.5
+.param x0=0.96 y0=0.96
 
 *our window p=N
 .func  f_ours(x)={(1-(2*x-1)**2)/(1-(2*x-1)**2+(2*x-1)**(2*p))}
-.func iy(y,v,z)={if(v>0,if(z>qp,I(Emem)*uv*Ron*f_ours(y)/D**2,0),if(z<qn,I(Emem)*uv*Ron*f_ours(y)/D**2,0))}
+.func iy(y,v,z)={if(v>0,if(z>qp,I(Emem)*k*f_ours(y),0),if(z<qn,I(Emem)*k*f_ours(y),0))}
 
 
-.subckt memristor_vol1 1 2 x y z
+.subckt memristor_synapse 1 2 x y z
 
 *output cell
 Roff 1 aux {Roff}
@@ -35,4 +35,4 @@ Enov 3 0 value={v(y)}
 Gy 0 y value={iy(v(y),v(1)-v(2),v(z))}
 Cy y 0 1 IC={y0}
 
-.ends memristor_vol1
+.ends memristor_synapse

@@ -1,0 +1,41 @@
+*Volatile Memristor Model 
+*Copyright 2021 FTS UNS MEMR Research Group 
+************************************************************************************ 
+.param Ron_n=1 Roff_n=100k uv_n=1e-10 D_n=10n qp_n=100e-9 qn_n=-80e-9 Rint_n=50k 
++ k_n={uv_n*Ron_n/D_n**2} deltaR_n={Roff_n-Ron_n} p_n=10 
+.param x0_n=0.5 y0_n=0.5 z0=0 
+
+*.param x0={(Roff_n-Rint_n)/(Roff_n-Ron_n)} y0={(Roff_n-Rint_n)/(Roff_n-Ron_n)} z0=0 
+
+
+*New window functions 
+.func fours_n(x)={(1-(2*x-1)**2)/(1-(2*x-1)**2+(2*x-1)**(2*p_n))} 
+.func  iy_n(y,v,z)={if(v>0,if(z>qp_n,I(Emem)*k_n*fours_n(y),0),if(z<qn_n,I(Emem)*k_n*fours_n(y),0))} 
+
+
+.subckt memristor_neuron 1 2 x y z 
+
+*terminal cell cell 
+Roff_n 1 aux {Roff_n} 
+Emem aux 2 value={-deltaR_n*v(x)*I(Emem)} 
+*end of terminal cell
+
+*x-module 
+Gx 0 x value={I(Emem)*uv_n*Ron_n*fours_n(v(x))/D_n**2} 
+Cx x 0 0.5 IC={x0_n} 
+Rx x 3 1 
+Enov 3 0 value={v(y)} 
+*end of x-module 
+
+*y-module 
+Gy 0 y value={iy_n(v(y),v(x),v(z))} 
+Cy y 0 1 IC={y0_n} 
+*end of y-module 
+
+*z-module 
+Gch 0 z value={I(Emem)} 
+Cz z 0 1 IC={0} 
+Rz z 0 0.1 
+*end of z-module 
+
+.ends memristor_neuron
