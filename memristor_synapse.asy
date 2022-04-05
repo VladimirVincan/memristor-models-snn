@@ -47,8 +47,9 @@ LINE Normal 29 88 29 84
 LINE Normal 30 88 30 84
 LINE Normal 31 88 31 84
 RECTANGLE Normal 32 88 0 24
-WINDOW 0 36 40 Left 2
-WINDOW 3 36 76 Left 2
+WINDOW 0 41 85 Left 2
+WINDOW 3 42 104 Left 2
+SYMATTR Value x0=0.5
 SYMATTR Prefix X
 SYMATTR Description Parameterized Memristor
 SYMATTR ModelFile memristor_synapse.sub
@@ -59,12 +60,12 @@ PINATTR SpiceOrder 1
 PIN 16 96 NONE 8
 PINATTR PinName minus
 PINATTR SpiceOrder 2
-PIN 64 -16 RIGHT 8
+PIN 64 32 RIGHT 8
 PINATTR PinName x
 PINATTR SpiceOrder 3
-PIN 64 0 RIGHT 8
+PIN 64 48 RIGHT 8
 PINATTR PinName y
 PINATTR SpiceOrder 4
-PIN 64 16 RIGHT 8
+PIN 64 64 RIGHT 8
 PINATTR PinName z
 PINATTR SpiceOrder 5
