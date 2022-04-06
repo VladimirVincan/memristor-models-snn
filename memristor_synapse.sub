@@ -7,6 +7,8 @@
 
 
 .subckt memristor_synapse 1 2 x y z
+	*x0 = 0.86 -> Rint=15k
+	*x0 = 0.5  -> Rint=50k
 
 *parameters
 	.param Ron=1 Roff=100k uv=100e-12 D=10n qp=100e-9 qn=-80e-9  Rint=50k
