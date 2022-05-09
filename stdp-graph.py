@@ -12,8 +12,8 @@ time_val = 0
 time_mid = 0.5
 
 # ---- EDIT ----
-time_start = 0.01
-time_update = 0.01
+time_start = 0.489
+time_update = 0.001
 # ---- end EDIT ----
 
 print(l.case_count)
